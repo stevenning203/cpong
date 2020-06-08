@@ -121,6 +121,11 @@ int main(void)
         drawrect(player_paddle.position[0], player_paddle.position[1], paddle_width, paddle_height);
         drawrect(ball.position[0], ball.position[1], ball_width, ball_height);
 
+        for (int i = 0; i < computer_score; i++)
+        {
+            drawrect(640 + i * 20, 10, 10, 10);
+        }
+
         glfwSwapBuffers(window);
 
         glfwPollEvents();
@@ -149,15 +154,16 @@ int main(void)
         if (ball.position[0] <= player_paddle.position[0] + paddle_width && ball.position[0] >= player_paddle.position[0] && ball.position[1] >= player_paddle.position[1] && ball.position[1] <= player_paddle.position[1] + paddle_height - ball_height)
         {
             ball.velocity[0] *= -1;
+            ball.position[0] = player_paddle.position[0] + paddle_width;
         }
         else if (ball.position[0] >= computer_paddle.position[0] - paddle_width && ball.position[0] <= computer_paddle.position[0] && ball.position[1] >= computer_paddle.position[1] && ball.position[1] <= computer_paddle.position[1] + paddle_height - ball_height)
         {
             ball.velocity[0] *= -1;
+            ball.position[0] = computer_paddle.position[0] - paddle_width;
         }
         if (tick % 120 == 30 && paddle_height > 40)
         {
             paddle_height -= 1;
-            std::cout << paddle_height << " is the paddleheight." << std::endl;
         }
         if (computer_score >= 5)
         {
