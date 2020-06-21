@@ -1,2 +1,2 @@
 # cpong
-Pong made in C++ and OpenGL
+My take on Pong made in C++ and OpenGL
